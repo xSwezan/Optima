@@ -36,7 +36,7 @@ return Component(function(props, children)
 	local AbsoluteSize = Value(Vector2.new())
 	local Clicks = Value(0)
 
-	return e("TextButton"){
+	return e("TextButton",{
 		Size = UDim2.fromScale(.5,.5); -- Default
 
 		Position = UDim2.fromScale(.5,.5); -- Default
@@ -52,13 +52,11 @@ return Component(function(props, children)
 			Set(Clicks,(Get(Clicks) + 1))
 		end;
 
-		[Children] = {
-			e("UIAspectRatioConstraint"){};
-			children;
-		};
-
 		[Extensions] = {
 			Extensions.ApplyProps(props,{"Size","Position","AnchorPoint"}); -- Applies props automatically
 		};
-	}
+	},{
+		e("UIAspectRatioConstraint"){};
+		children;
+	})
 end)
